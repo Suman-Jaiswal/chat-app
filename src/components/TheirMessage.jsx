@@ -8,8 +8,8 @@ export default function TheirMessage({lastMessage , message}) {
         isFisrtMessageByUser && (
           <div
              className="message-avatar"
-             style={{backgroundImage: `url(${message?.sender?.avatar})`}}/>
-         )} { message?.attachments?.length > 0
+             style={{backgroundImage:message.sender && `url(${message.sender.avatar})`}}/>
+         )} {message.attachments && message.attachments.length > 0
               ? (
                 <img src={message.attachments[0].file} 
                      alt="message-attachment"
