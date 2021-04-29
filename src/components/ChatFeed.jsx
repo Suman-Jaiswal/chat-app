@@ -51,7 +51,8 @@ export default function ChatFeed(props) {
       )
     })
   }
-   renderMessages()
+  renderMessages()
+ 
    if(!chat) return "Loading..."
   return (
     <div className="channel">
@@ -61,6 +62,8 @@ export default function ChatFeed(props) {
         <div className="chat-subtitle">{chat.people.map(person => `${person.person.username},`)}</div>
       </div>
       <div> {renderMessages()}</div>
+
+     
       
      </div>
          <div className="message-form-container">
