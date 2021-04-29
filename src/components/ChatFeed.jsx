@@ -39,8 +39,8 @@ export default function ChatFeed(props) {
                  ? <MyMessage message={message}/> 
                  : <TheirMessage message={message} lastMessage={lastMessageKey} /> 
                    } 
+               <div ref={dummy}></div>
            </div>
-               <span ref={dummy}></span>
            <div className="read-receipts" style={{marginRight: isMyMessage? '18px' : '0px' , marginLeft: isMyMessage? '0px' : '68px' }}>
              {renderReadReceipts(message, isMyMessage)}
           
