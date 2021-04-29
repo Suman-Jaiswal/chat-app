@@ -1,9 +1,10 @@
 import MessageForm from './MessageForm';
 import MyMessage from './MyMessage';
 import TheirMessage from './TheirMessage';
+import {useRef} from 'react';
 
 export default function ChatFeed(props) {
-  
+  const dummy = useRef()
   const {chats , activeChat , userName , messages} = props;
   const chat = chats && chats[activeChat];
   const renderReadReceipts = (message , isMyMessage) =>{
@@ -36,11 +37,13 @@ export default function ChatFeed(props) {
                {
                  isMyMessage
                  ? <MyMessage message={message}/> 
-                 : <TheirMessage message={message} lastMessage={lastMessageKey} />
-               }
+                 : <TheirMessage message={message} lastMessage={lastMessageKey} /> 
+                   } 
            </div>
+               <span ref={dummy}></span>
            <div className="read-receipts" style={{marginRight: isMyMessage? '18px' : '0px' , marginLeft: isMyMessage? '0px' : '68px' }}>
-                      {renderReadReceipts(message, isMyMessage)}
+             {renderReadReceipts(message, isMyMessage)}
+          
            </div>
 
         </div>   
@@ -51,17 +54,18 @@ export default function ChatFeed(props) {
    renderMessages()
    if(!chat) return "Loading..."
   return (
+    <div className="channel">
     <div className="chat-feed">
       <div className="chat-title-container">
         <div className="chat-title">{chat.title}</div>
         <div className="chat-subtitle">{chat.people.map(person => `${person.person.username},`)}</div>
       </div>
-       {renderMessages()}
-       <div style={{height: '100px'}}>
+      <div> {renderMessages()}</div>
+      
+     </div>
          <div className="message-form-container">
-           <MessageForm {...props} chatId={activeChat}/>
+           <MessageForm dummy={dummy} {...props} chatId={activeChat}/>
          </div>
-       </div>
     </div>
   )
 }

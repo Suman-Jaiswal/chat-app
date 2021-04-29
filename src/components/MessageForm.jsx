@@ -18,6 +18,7 @@ export default function MessageForm(props) {
 
     if(text.length >0 ) sendMessage(creds, chatId, {text})
     setValue('')
+    props.dummy.current.scrollIntoView({ behavior: 'smooth' });
   }
 
   const handleUpload=(e)=>{
